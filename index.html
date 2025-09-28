@@ -3,19 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Classical Melody Keyboard</title>
+  <title>Keyboard Kids</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap');
     :root {
       color-scheme: light;
-      --bg: #f3f1ff;
+      --bg: #fff6f0;
+      --bg-secondary: #fef3ff;
       --panel: #ffffff;
-      --text: #1d1b2f;
-      --accent-1: #ff9f1c;
-      --accent-2: #ff595e;
-      --accent-3: #8ac926;
-      --accent-4: #1982c4;
-      --accent-5: #6a4c93;
-      --accent-6: #ffca3a;
+      --text: #30263b;
+      --muted-text: rgba(48, 38, 59, 0.7);
+      --accent-1: #ff8ba0;
+      --accent-2: #ffa94d;
+      --accent-3: #7bdff2;
+      --accent-4: #9d6bff;
+      --accent-5: #ffd166;
+      --accent-6: #6ede8a;
+      --accent-7: #ffa3d7;
       --toast-accent: var(--accent-4);
     }
 
@@ -25,34 +29,75 @@
 
     body {
       margin: 0;
-      font-family: 'Nunito', 'Helvetica Neue', Arial, sans-serif;
-      background: radial-gradient(circle at top, #ffffff 0%, var(--bg) 60%, #e2ddff 100%);
+      font-family: 'Baloo 2', 'Nunito', 'Helvetica Neue', Arial, sans-serif;
+      background: radial-gradient(circle at top left, var(--bg) 0%, var(--bg-secondary) 45%, #ffeef5 100%);
       color: var(--text);
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 2rem 1.5rem 3rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(0.5px);
+      opacity: 0.45;
+      z-index: 0;
+    }
+
+    body::before {
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(255, 195, 160, 0.55), rgba(255, 138, 160, 0));
+      top: -140px;
+      right: -120px;
+    }
+
+    body::after {
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(155, 107, 255, 0.4), rgba(123, 223, 242, 0));
+      bottom: -180px;
+      left: -160px;
     }
 
     main {
       max-width: 1040px;
       width: 100%;
       background: var(--panel);
-      border-radius: 24px;
-      box-shadow: 0 20px 60px rgba(40, 24, 80, 0.25);
-      padding: 2.5rem 2rem 2.75rem;
+      border-radius: 32px;
+      box-shadow: 0 24px 70px rgba(157, 107, 255, 0.2);
+      padding: 2.75rem 2.25rem 3rem;
       position: relative;
       overflow: hidden;
+      isolation: isolate;
     }
 
     main::after {
       content: "";
       position: absolute;
-      inset: -120px -160px auto auto;
-      width: 280px;
-      height: 280px;
-      background: linear-gradient(135deg, rgba(255, 153, 0, 0.4), rgba(25, 130, 196, 0.35));
+      inset: auto -140px -140px auto;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle at center, rgba(123, 223, 242, 0.55), rgba(255, 161, 77, 0.25));
+      border-radius: 50%;
+      z-index: 0;
+      filter: blur(0.5px);
+    }
+
+    main::before {
+      content: "";
+      position: absolute;
+      inset: -160px auto auto -120px;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle at top right, rgba(255, 138, 160, 0.55), rgba(255, 209, 102, 0.2));
       border-radius: 50%;
       z-index: 0;
       filter: blur(0.5px);
@@ -62,46 +107,66 @@
       position: relative;
       z-index: 1;
       text-align: center;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2.75rem;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      inset: auto 50% -36px 50%;
+      transform: translateX(-50%);
+      width: min(320px, 70%);
+      height: 12px;
+      background: linear-gradient(90deg, rgba(255, 138, 160, 0.35), rgba(123, 223, 242, 0.6), rgba(255, 209, 102, 0.35));
+      border-radius: 999px;
+      opacity: 0.9;
     }
 
     h1 {
       margin: 0 0 0.75rem;
-      font-size: clamp(2.1rem, 4vw, 2.8rem);
+      font-size: clamp(2.4rem, 5.5vw, 3.4rem);
+      line-height: 1.05;
+      background: linear-gradient(120deg, var(--accent-4), var(--accent-1), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 8px 24px rgba(157, 107, 255, 0.3);
     }
 
     p.lead {
       margin: 0 auto;
       max-width: 640px;
       font-size: 1.1rem;
-      line-height: 1.6;
+      line-height: 1.65;
+      color: var(--muted-text);
     }
 
     .now-playing {
-      margin: 1.75rem auto 0;
-      max-width: 680px;
-      background: rgba(255, 255, 255, 0.75);
-      border-radius: 16px;
-      padding: 0.85rem 1.2rem;
+      margin: 1.9rem auto 0;
+      max-width: 720px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 22px;
+      padding: 0.95rem 1.4rem;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
       font-size: 1rem;
-      box-shadow: 0 8px 24px rgba(30, 30, 60, 0.12);
+      box-shadow: 0 12px 28px rgba(157, 107, 255, 0.18);
     }
 
     .now-playing .label {
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.85rem;
-      color: rgba(29, 27, 47, 0.7);
+      letter-spacing: 0.1em;
+      font-size: 0.82rem;
+      color: rgba(48, 38, 59, 0.55);
     }
 
     .now-playing .value {
       font-weight: 600;
+      color: var(--text);
     }
 
     .keys-grid {
@@ -109,21 +174,21 @@
       z-index: 1;
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1.7rem;
     }
 
     .keys-row-wrapper {
       display: flex;
       flex-direction: column;
-      gap: 0.65rem;
+      gap: 0.75rem;
     }
 
     .keys-row-label {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(29, 27, 47, 0.55);
+      color: rgba(48, 38, 59, 0.5);
       padding-left: 0.35rem;
     }
 
@@ -142,7 +207,7 @@
     }
 
     .keys-row::-webkit-scrollbar-thumb {
-      background: rgba(106, 76, 147, 0.22);
+      background: rgba(157, 107, 255, 0.35);
       border-radius: 999px;
     }
 
@@ -152,21 +217,33 @@
     }
 
     .key-card {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 18px;
-      padding: 1.4rem 1.1rem 2rem;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 26px;
+      padding: 1.45rem 1.15rem 2.1rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
       cursor: pointer;
-      box-shadow: 0 10px 24px rgba(30, 30, 60, 0.18);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      box-shadow: 0 16px 32px rgba(48, 38, 59, 0.12);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
       border: 3px solid transparent;
       position: relative;
       --card-color: var(--accent-4);
       scroll-snap-align: start;
+      overflow: hidden;
+    }
+
+    .key-card::before {
+      content: "";
+      position: absolute;
+      inset: -30% auto auto -30%;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.5), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .key-card span.letter {
@@ -176,28 +253,30 @@
       margin-bottom: 0.55rem;
       display: inline-flex;
       flex-wrap: wrap;
-      width: 68px;
-      height: 68px;
-      border-radius: 18px;
+      width: 74px;
+      height: 74px;
+      border-radius: 24px;
       align-items: center;
       justify-content: center;
       line-height: 1.1;
       text-align: center;
       white-space: normal;
       color: white;
+      box-shadow: inset 0 -4px 12px rgba(48, 38, 59, 0.18);
     }
 
     .key-card span.title {
-      font-size: 1rem;
-      font-weight: 600;
+      font-size: 1.02rem;
+      font-weight: 700;
       line-height: 1.4;
+      color: var(--text);
     }
 
     .key-card span.subtitle {
       display: block;
-      margin-top: 0.25rem;
-      font-size: 0.9rem;
-      opacity: 0.7;
+      margin-top: 0.35rem;
+      font-size: 0.88rem;
+      color: rgba(48, 38, 59, 0.6);
     }
 
     .key-card .progress-track {
@@ -228,13 +307,17 @@
 
     .key-card[data-active="true"] {
       transform: translateY(-6px) scale(1.02);
-      box-shadow: 0 16px 32px rgba(30, 30, 60, 0.25);
-      border-color: rgba(106, 76, 147, 0.6);
+      box-shadow: 0 22px 42px rgba(157, 107, 255, 0.35);
+      border-color: rgba(157, 107, 255, 0.45);
+    }
+
+    .key-card[data-active="true"]::before {
+      opacity: 1;
     }
 
     .key-card[data-queued="true"] {
-      border-color: rgba(106, 76, 147, 0.35);
-      box-shadow: 0 12px 26px rgba(30, 30, 60, 0.18);
+      border-color: rgba(157, 107, 255, 0.3);
+      box-shadow: 0 16px 34px rgba(48, 38, 59, 0.16);
     }
 
     .key-card[data-queued="true"]::after {
@@ -242,7 +325,7 @@
       position: absolute;
       top: 10px;
       right: 10px;
-      background: rgba(106, 76, 147, 0.16);
+      background: rgba(157, 107, 255, 0.18);
       color: var(--text);
       font-size: 0.65rem;
       font-weight: 700;
@@ -257,7 +340,7 @@
     }
 
     .controls {
-      margin-top: 2.5rem;
+      margin-top: 2.7rem;
       position: relative;
       z-index: 1;
       display: flex;
@@ -265,10 +348,11 @@
       justify-content: space-between;
       align-items: center;
       gap: 1.5rem;
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 16px;
-      padding: 1.1rem 1.4rem;
-      box-shadow: 0 12px 26px rgba(30, 30, 60, 0.15);
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 24px;
+      padding: 1.3rem 1.6rem;
+      box-shadow: 0 16px 34px rgba(48, 38, 59, 0.16);
+      border: 2px solid rgba(157, 107, 255, 0.12);
     }
 
     .volume-control {
@@ -283,17 +367,17 @@
       font-weight: 700;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      font-size: 0.75rem;
-      color: rgba(29, 27, 47, 0.65);
+      font-size: 0.78rem;
+      color: rgba(48, 38, 59, 0.6);
     }
 
     .volume-control input[type="range"] {
       -webkit-appearance: none;
       appearance: none;
       width: clamp(160px, 25vw, 260px);
-      height: 6px;
+      height: 8px;
       border-radius: 999px;
-      background: rgba(106, 76, 147, 0.24);
+      background: rgba(157, 107, 255, 0.25);
       outline: none;
       position: relative;
     }
@@ -301,21 +385,21 @@
     .volume-control input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       background: var(--accent-4);
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(25, 130, 196, 0.35);
+      box-shadow: 0 6px 12px rgba(157, 107, 255, 0.4);
     }
 
     .volume-control input[type="range"]::-moz-range-thumb {
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       background: var(--accent-4);
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(25, 130, 196, 0.35);
+      box-shadow: 0 6px 12px rgba(157, 107, 255, 0.4);
       border: none;
     }
 
@@ -323,6 +407,7 @@
       font-weight: 600;
       font-size: 0.9rem;
       min-width: 3.25rem;
+      color: var(--text);
     }
 
     .stop {
@@ -330,16 +415,17 @@
     }
 
     .queue-panel {
-      margin-top: 2.5rem;
+      margin-top: 2.7rem;
       position: relative;
       z-index: 1;
-      background: rgba(255, 255, 255, 0.85);
-      border-radius: 18px;
-      padding: 1.4rem 1.6rem;
-      box-shadow: 0 12px 28px rgba(30, 30, 60, 0.16);
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 26px;
+      padding: 1.6rem 1.8rem;
+      box-shadow: 0 18px 36px rgba(48, 38, 59, 0.18);
       display: flex;
       flex-direction: column;
-      gap: 0.9rem;
+      gap: 1rem;
+      border: 2px solid rgba(157, 107, 255, 0.15);
     }
 
     .queue-panel__header {
@@ -351,19 +437,21 @@
 
     .queue-panel h2 {
       margin: 0;
-      font-size: 1.2rem;
+      font-size: 1.25rem;
+      color: var(--accent-4);
+      letter-spacing: 0.02em;
     }
 
     .queue-empty {
       margin: 0;
       font-size: 0.95rem;
-      color: rgba(29, 27, 47, 0.65);
+      color: var(--muted-text);
     }
 
     .queue-summary {
       margin: 0;
       font-size: 0.9rem;
-      color: rgba(29, 27, 47, 0.7);
+      color: rgba(48, 38, 59, 0.7);
       display: flex;
       gap: 0.4rem;
       align-items: baseline;
@@ -374,18 +462,19 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.2rem 0.65rem;
+      padding: 0.2rem 0.75rem;
       border-radius: 999px;
-      background: rgba(25, 130, 196, 0.12);
-      font-weight: 600;
-      letter-spacing: 0.04em;
+      background: rgba(123, 223, 242, 0.35);
+      font-weight: 700;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      font-size: 0.7rem;
-      color: rgba(29, 27, 47, 0.75);
+      font-size: 0.72rem;
+      color: var(--text);
     }
 
     .queue-summary__text {
       font-weight: 600;
+      color: var(--text);
     }
 
     .queue-list {
@@ -402,93 +491,96 @@
       align-items: center;
       gap: 0.65rem;
       font-size: 0.95rem;
-      color: rgba(29, 27, 47, 0.9);
+      color: rgba(48, 38, 59, 0.9);
     }
 
     .queue-item .queue-pill {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: rgba(106, 76, 147, 0.14);
+      background: rgba(157, 107, 255, 0.16);
       color: var(--text);
       border-radius: 999px;
-      padding: 0.35rem 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.01em;
+      padding: 0.35rem 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
     }
 
     .queue-item .queue-meta {
       font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: rgba(29, 27, 47, 0.6);
+      color: rgba(48, 38, 59, 0.55);
     }
 
     .queue-item.queue-item--more {
       justify-content: flex-end;
       font-style: italic;
-      color: rgba(29, 27, 47, 0.6);
+      color: rgba(48, 38, 59, 0.55);
     }
 
     .queue-item.is-playing .queue-pill {
-      background: rgba(25, 130, 196, 0.16);
+      background: rgba(123, 223, 242, 0.45);
       color: var(--accent-4);
     }
 
     .queue-item.is-next .queue-pill {
-      background: rgba(255, 159, 28, 0.18);
-      color: var(--accent-1);
+      background: rgba(255, 169, 77, 0.45);
+      color: var(--accent-2);
     }
 
     button.clear-queue {
-      background: transparent;
-      border: 2px solid rgba(106, 76, 147, 0.3);
+      background: rgba(255, 255, 255, 0.8);
+      border: 2px solid rgba(157, 107, 255, 0.35);
       color: var(--text);
-      font-weight: 600;
+      font-weight: 700;
       border-radius: 999px;
-      padding: 0.45rem 1.1rem;
+      padding: 0.55rem 1.25rem;
       cursor: pointer;
-      transition: border-color 0.2s ease, transform 0.2s ease;
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 8px 16px rgba(157, 107, 255, 0.18);
     }
 
     button.clear-queue:hover:not(:disabled) {
-      border-color: rgba(106, 76, 147, 0.65);
+      border-color: rgba(157, 107, 255, 0.6);
       transform: translateY(-2px);
+      box-shadow: 0 12px 20px rgba(157, 107, 255, 0.25);
     }
 
     button.clear-queue:disabled {
       cursor: not-allowed;
-      opacity: 0.6;
+      opacity: 0.55;
+      box-shadow: none;
     }
 
     button.stop {
-      background: var(--accent-4);
+      background: linear-gradient(120deg, var(--accent-1), var(--accent-4));
       color: #fff;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 1.05rem;
       border: none;
       border-radius: 999px;
-      padding: 0.9rem 2.4rem;
+      padding: 0.95rem 2.6rem;
       cursor: pointer;
-      box-shadow: 0 14px 28px rgba(25, 130, 196, 0.35);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      box-shadow: 0 18px 32px rgba(255, 138, 160, 0.35);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
     }
 
     button.stop:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 36px rgba(25, 130, 196, 0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 22px 38px rgba(255, 138, 160, 0.4);
       filter: brightness(1.05);
     }
 
     button.stop:active {
-      transform: translateY(1px);
+      transform: translateY(0);
     }
 
     footer {
-      margin-top: 2rem;
+      margin-top: 2.2rem;
       text-align: center;
       font-size: 0.9rem;
-      color: rgba(29, 27, 47, 0.7);
+      color: rgba(48, 38, 59, 0.65);
       position: relative;
       z-index: 1;
     }
@@ -514,22 +606,22 @@
       display: flex;
       align-items: center;
       gap: 0.85rem;
-      background: rgba(255, 255, 255, 0.92);
-      border-radius: 22px;
-      padding: 0.75rem 1.1rem;
-      box-shadow: 0 18px 40px rgba(30, 30, 60, 0.2);
-      border: 2px solid rgba(106, 76, 147, 0.25);
-      backdrop-filter: blur(8px);
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 26px;
+      padding: 0.8rem 1.2rem;
+      box-shadow: 0 20px 44px rgba(157, 107, 255, 0.28);
+      border: 2px solid rgba(157, 107, 255, 0.3);
+      backdrop-filter: blur(10px);
     }
 
     .melody-toast__key {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 48px;
-      min-height: 48px;
+      min-width: 50px;
+      min-height: 50px;
       padding: 0 0.75rem;
-      border-radius: 14px;
+      border-radius: 16px;
       background: var(--toast-accent);
       color: #fff;
       font-weight: 800;
@@ -537,6 +629,7 @@
       letter-spacing: 0.04em;
       white-space: nowrap;
       text-align: center;
+      box-shadow: inset 0 -4px 10px rgba(48, 38, 59, 0.18);
     }
 
     .melody-toast__text {
@@ -556,7 +649,7 @@
       font-size: 0.85rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: rgba(29, 27, 47, 0.65);
+      color: rgba(48, 38, 59, 0.55);
     }
 
     @media (max-width: 600px) {
@@ -565,30 +658,30 @@
       }
 
       .keys-grid {
-        gap: 1.1rem;
+        gap: 1.3rem;
       }
 
       .keys-row {
-        grid-auto-columns: minmax(140px, 70%);
+        grid-auto-columns: minmax(150px, 72%);
       }
 
       .key-card {
-        padding: 1.1rem 0.85rem 1.7rem;
+        padding: 1.2rem 0.95rem 1.85rem;
       }
 
       .now-playing {
-        padding: 0.75rem 1rem;
+        padding: 0.8rem 1.05rem;
         font-size: 0.95rem;
       }
 
       .key-card span.letter {
-        width: 60px;
-        height: 60px;
+        width: 64px;
+        height: 64px;
         font-size: 2.2rem;
       }
 
       .queue-panel {
-        padding: 1.1rem 1.2rem;
+        padding: 1.3rem 1.35rem;
       }
 
       .queue-panel__header {
@@ -610,8 +703,8 @@
       }
 
       .melody-toast__key {
-        min-width: 44px;
-        min-height: 44px;
+        min-width: 46px;
+        min-height: 46px;
         font-size: 1.2rem;
       }
     }
@@ -620,11 +713,11 @@
 <body>
   <main>
     <header>
-      <h1>Classical Melody Keyboard</h1>
-      <p class="lead">Every key on your keyboard lights up with a gentle classical riff—press one key or tap a card, then listen all the way through (or line up a few; they patiently wait their turn!).</p>
+      <h1>Keyboard Kids</h1>
+      <p class="lead">Bright, bouncy keys unlock tiny classical tunes—tap a key, line up a few favourites, and let your mini orchestra take turns playing for you!</p>
       <div class="now-playing" role="status" aria-live="polite">
         <span class="label">Now playing</span>
-        <span class="value">Press any key or tap a card to begin!</span>
+        <span class="value">Press a colorful key or tap a card to start the concert!</span>
       </div>
     </header>
 
@@ -663,7 +756,7 @@
     </div>
 
     <footer>
-      Tip: Turn the volume to a comfy level, then explore the melodies together—line up as many keys as you like and they'll take turns.
+      Tip: Pair up and try patterns together—the queue keeps every melody waiting its turn with a smile.
     </footer>
   </main>
 
@@ -982,6 +1075,15 @@
       'lullaby'
     ];
 
+    const SPECIAL_KEY_MELODIES = {
+      a: 'ode',
+      s: 'mozart',
+      d: 'minuet',
+      f: 'canon'
+    };
+
+    const RESERVED_PATTERN_IDS = new Set(Object.values(SPECIAL_KEY_MELODIES));
+
     const FRIENDLY_NAMES = {
       'Escape': 'Esc',
       '`': 'Backtick',
@@ -1084,16 +1186,16 @@
     const volumeValue = document.getElementById('volumeValue');
     const stopButton = document.getElementById('stopButton');
     const STORAGE_KEYS = {
-      volume: 'classicalKeyboard.volumeLevel'
+      volume: 'keyboardKids.volumeLevel'
     };
 
     const KEY_ROW_LABELS = [
-      'Esc & numbers',
-      'Top letters',
-      'Home row',
-      'Bottom row',
-      'Space & modifiers',
-      'Navigation keys'
+      'Number row rockets',
+      'Explorer letters',
+      'Home row heroes',
+      'Bottom row beats',
+      'Space & helpers',
+      'Arrow adventures'
     ];
 
     const rowContainers = [];
@@ -1129,9 +1231,20 @@
       });
     });
 
+    let patternCursor = 0;
+
     keyEntries.forEach((entry, index) => {
-      const patternId = PATTERN_SEQUENCE[index % PATTERN_SEQUENCE.length];
-      const pattern = PATTERN_LIBRARY[patternId];
+      const specialPatternId = SPECIAL_KEY_MELODIES[entry.datasetKey];
+      let patternId = specialPatternId;
+      if (!patternId) {
+        let candidate;
+        do {
+          candidate = PATTERN_SEQUENCE[patternCursor % PATTERN_SEQUENCE.length];
+          patternCursor += 1;
+        } while (RESERVED_PATTERN_IDS.has(candidate));
+        patternId = candidate;
+      }
+      const pattern = PATTERN_LIBRARY[patternId] || PATTERN_LIBRARY[PATTERN_SEQUENCE[0]];
       const color = COLOR_POOL[index % COLOR_POOL.length];
 
       melodies[entry.datasetKey] = {
@@ -1173,7 +1286,7 @@
         letterSpan.style.fontSize = 'clamp(0.95rem, 2vw, 1.2rem)';
       }
 
-      const gradient = `linear-gradient(145deg, ${color}33, #ffffff)`;
+      const gradient = `linear-gradient(150deg, ${color}26, rgba(255, 255, 255, 0.98))`;
       letterSpan.style.background = color;
       card.style.background = gradient;
 
